@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.SqlServer.Server;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,14 +26,26 @@ namespace ProjekUAS2
                 akun.Username = tbUsername.Text;
                 akun.Password = tbPassword.Text;
                 akun.Name = tbName.Text;
-                akun.Age = Int16.Parse(tbAge.Text);
+                try
+                {
+                    akun.Age = Int16.Parse(tbAge.Text);
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Masukkan angka pada kolom Age");
+                }
+                
 
                 context.Akuns.Add(akun);
                 context.SaveChanges();
 
                 LoginForm loginForm = new LoginForm();
-                loginForm.Show();
-                this.Hide();
+                if (akun.Username != null && akun.Password != null && akun.Name != null && akun.Age != null)
+                {
+                    loginForm.Show();
+                    this.Hide();
+                }
+                
             }
         }
     }
