@@ -34,20 +34,55 @@ namespace ProjekUAS2
                         MessageBox.Show("Username/Password Salah");
                     }
                 }*/
-                Akun akun = context.Akuns.FirstOrDefault(a => a.Username == tbUsername.Text);
-                if (akun.Username == tbUsername.Text && akun.Password == tbPassword.Text)
+                
+                
+                    Akun akun = context.Akuns.FirstOrDefault(a => a.Username == tbUsername.Text);
+                if (akun == null)
                 {
-                    Dashboard dashboard = new Dashboard();
-                    dashboard.Show();
-                    this.Hide();
+                    MessageBox.Show("Username tidak ada");
                 }
                 else
                 {
-                    MessageBox.Show("Username / Password Salah oi");
-                }
-
+                    if (akun.Password == tbPassword.Text)
+                    {
+                        Dashboard dashboard = new Dashboard();
+                        dashboard.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Password Salah");
+                    }
+                }   
+                /*bool adaData = false;
+                    foreach (var akunCheck in context.Akuns)
+                    {
+                        akunCheck.Username = tbUsername.Text;
+                        if (akunCheck.Username != null)
+                        {
+                            adaData = true;
+                        }
+                    }
+                    if (adaData)
+                    {
+                        if (akun.Password == tbPassword.Text)
+                        {
+                            Dashboard dashboard = new Dashboard();
+                            dashboard.Show();
+                            this.Hide();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Username / Password Salah oi");
+                        }
+                    }*/
+                    
             }
+               
+                
+
         }
+    
 
         private void btnSignUp_Click(object sender, EventArgs e)
         {
