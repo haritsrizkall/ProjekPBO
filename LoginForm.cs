@@ -43,7 +43,7 @@ namespace ProjekUAS2
                 }
                 else
                 {
-                    MessageBox.Show("Username / Password Salah");
+                    MessageBox.Show("Username / Password Salah oi");
                 }
 
             }
